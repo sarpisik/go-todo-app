@@ -23,7 +23,7 @@ func (controller *TodoController) GetOne(c *fiber.Ctx) error {
 
 	if err != nil {
 		return c.Status(http.StatusBadRequest).JSON(fiber.Map{
-			"error": err,
+			"error": err.Error(),
 		})
 	}
 
@@ -31,7 +31,7 @@ func (controller *TodoController) GetOne(c *fiber.Ctx) error {
 
 	if err != nil {
 		return c.Status(http.StatusNotFound).JSON(fiber.Map{
-			"error": err,
+			"error": err.Error(),
 		})
 	}
 
@@ -44,7 +44,7 @@ func (controller *TodoController) CreateOne(c *fiber.Ctx) error {
 	if err := c.BodyParser(data); err != nil {
 		return c.Status(http.StatusInternalServerError).JSON(fiber.Map{
 			"message": "Invalid input",
-			"error":   err,
+			"error":   err.Error(),
 		})
 	}
 

@@ -12,16 +12,16 @@ import (
 
 func ConnectDB() {
 	var err error
-	p := config.Config("DB_PORT")
+	p := config.Config("POSTGRES_PORT")
 	port, err := strconv.ParseUint(p, 10, 32)
 
 	configData := fmt.Sprintf(
 		"host=%s port=%d user=%s password=%s dbname=%s sslmode=disable",
-		config.Config("DB_HOST"),
+		config.Config("POSTGRES_HOSTNAME"),
 		port,
-		config.Config("DB_USER"),
-		config.Config("DB_PASSWORD"),
-		config.Config("DB_NAME"),
+		config.Config("POSTGRES_USER"),
+		config.Config("POSTGRES_PASSWORD"),
+		config.Config("POSTGRES_DB"),
 	)
 
 	DB, err = gorm.Open("postgres", configData)
